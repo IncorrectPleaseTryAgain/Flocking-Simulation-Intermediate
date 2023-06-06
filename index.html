@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <title>P5.JS | Flocking</title>
+
+  <link rel="stylesheet" type="text/css" href="css/general.css">
+  <link rel="stylesheet" type="text/css" href="css/layout.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+
+  <script src="libraries/p5.min.js"></script>
+  <script src="libraries/p5.sound.min.js"></script>
+</head>
+
+<body>
+
+  <div class="div-container">
+
+    <div class="div-sidebar">
+
+      <div class="centered-container">
+        <h2>Settings</h2>
+      </div>
+
+      <div class="div-settings">
+
+        <div class="div-force">
+          <div>
+            <h3>Force</h3>
+          </div>
+
+          <div class="div-force-content-container">
+
+            <div class="div-slider-container" title="Boid move away from local boids">
+              <div class="label-slider" label for="i-f-s">Seperation</label></div>
+              <div><input type="range" id="i-f-s" class="input-force-seperation"></div>
+              <div>
+                <p class="p-force-seperation">10</p>
+              </div>
+            </div>
+
+            <div class="div-slider-container" title="Boid move in direction of local boids">
+              <div class="label-slider"><label for="i-f-a">Alignment</label></div>
+              <div><input type="range" id="i-f-a" class="input-force-alignment"></div>
+              <div>
+                <p class="p-force-alignment">10</p>
+              </div>
+            </div>
+
+            <div class="div-slider-container" title="Boid move towards local boids">
+              <div class="label-slider"><label for="i-f-c">Cohesion</label></div>
+              <div><input type="range" id="i-f-c" class="input-force-cohesion"></div>
+              <div>
+                <p class="p-force-cohesion">10</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="div-multipliers">
+          <div>
+            <h3>Multipliers</h3>
+          </div>
+
+          <div class="div-multipliers-content-container">
+
+            <div class="div-slider-container" title="Boid average distance from local boids">
+              <div class="label-slider"><label for="i-d-m">Distance</label></div>
+              <div><input type="range" id="i-d-m" class="input-multiplier-distance"></div>
+              <div>
+                <p class="p-multiplier-distance">10</p>
+              </div>
+            </div>
+
+            <div class="div-slider-container" title="Boid average heading from local boids">
+              <div class="label-slider"><label for="i-h-m">Heading</label></div>
+              <div><input type="range" id="i-h-m" class="input-multiplier-heading"></div>
+              <div>
+                <p class="p-multiplier-heading">10</p>
+              </div>
+            </div>
+
+            <div class="div-slider-container" title="Boid average position from local boids">
+              <div class="label-slider"><label for="i-p-m">Position</label></div>
+              <div><input type="range" id="i-p-m" class="input-multiplier-position"></div>
+              <div>
+                <p class="p-multiplier-position">10</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="div-boids">
+          <div>
+            <h3>Boids</h3>
+          </div>
+
+          <div class="div-boids-content-container">
+
+            <div class="div-slider-container" title="Number of boids in flock">
+              <div class="label-slider"><label for="i-n-b">Num Boids</label></div>
+              <div><input type="range" id="i-n-b" class="input-num-boids"></div>
+              <div>
+                <p class="p-num-boids">10</p>
+              </div>
+            </div>
+
+            <div class="div-slider-container" title="Size of boids in flock">
+              <div class="label-slider"><label for="i-b-s">Boid Size</label></div>
+              <div><input type="range" id="i-b-s" class="input-boid-size"></div>
+              <div>
+                <p class="p-boid-size">10</p>
+              </div>
+            </div>
+
+            <div class="div-slider-container" title="Size of boid field of view range">
+              <div class="label-slider"><label for="i-r-s">Range Size</label></div>
+              <div><input type="range" id="i-r-s" class="input-range-size"></div>
+              <div>
+                <p class="p-range-size">10</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="div-color">
+
+          <div>
+            <h3>Color</h3>
+          </div>
+
+          <div class="div-color-content-container">
+
+            <div class="div-color-container">
+              <div><input type="color" id="i-bd-c" class="input-color-boid"></div>
+              <div><label for="i-bd-c" class="label-color">Boid</label></div>
+            </div>
+
+            <div class="div-color-container">
+              <div><input type="color" id="i-ba-c" class="input-color-background"></div>
+              <div><label for="i-ba-c" class="label-color">Background</label></div>
+            </div>
+
+            <div class="div-color-container">
+              <div><input type="color" id="i-bdr-c" class="input-color-boundary"></div>
+              <div><label for="i-bdr-c" class="label-color">Boundary</label></div>
+            </div>
+
+            <div class="div-color-container">
+              <div><input type="color" id="i-r-c" class="input-color-range"></div>
+              <div><label for="i-r-c" class="label-color">Range</label></div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="div-other">
+          <div>
+            <h3>Other</h3>
+          </div>
+
+          <div class="div-other-content-container">
+
+            <div class="div-other-sliders-container">
+
+              <div class="div-slider-container" title="Speed of each boids">
+                <div class="label-slider"><label for="i-m-s">Speed</label></div>
+                <div><input type="range" id="i-m-s" class="input-max-speed"></div>
+                <div>
+                  <p class="p-max-speed">10</p>
+                </div>
+              </div>
+
+              <div class="div-slider-container" title="Total number of boids allowed inside quadtree boundary">
+                <div class="label-slider"><label for="i-c">Capacity</label></div>
+                <div><input type="range" id="i-c" class="input-capacity"></div>
+                <div>
+                  <p class="p-capacity">10</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="div-other-other-container">
+
+              <div class="div-other-checkbox-container">
+
+                <div class="div-checkbox-container">
+                  <div class="div-input-show"><input type="checkbox" id="i-s-r" class="input-show-range"></div>
+                  <div><label for="i-s-r">Show Range</label></div>
+                </div>
+
+                <div class="div-checkbox-container">
+                  <div class="div-input-show"><input type="checkbox" id="i-s-q" class="input-show-quadtree"></div>
+                  <div><label for="i-s-q">Show Quadtree</label></div>
+                </div>
+              </div>
+
+              <div class="div-btn-reset-container">
+                <button class="btn-reset-settings">Reset Settings</button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <main class="div-main">
+
+      <div>
+        <header class="div-header">
+          <h1>Flocking Simulation</h1>
+          <p>by <a rel="author" href="https://github.com/IncorrectPleaseTryAgain">Michael Steenkamp</a></p>
+        </header>
+      </div>
+
+      <div class="centered-container div-fps">
+        <div>
+          <p>FPS:</p>
+        </div>
+        <div class="div-framerate-value">
+          <p class="p-framerate">12.25</p>
+        </div>
+      </div>
+
+      <div class="centered-container">
+        <div class="div-p5" id="canvas-parent"></div>
+      </div>
+
+      <div class="centered-container div-use-quadtree">
+        <div><input type="checkbox" id="i-u-c" class="input-use-quadtree"></div>
+        <div><label for="i-u-c">Quadtree On/Off</label></div>
+      </div>
+
+      <div class="centered-container">
+        <footer class="div-footer">
+          <p>created using <a href="https://p5js.org/">p5.js</a></p>
+        </footer>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="js/flock.js"></script>
+  <script src="js/boid.js"></script>
+  <script src="js/quadtree.js"></script>
+  <script src="js/boundary.js"></script>
+  <script src="js/range.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>

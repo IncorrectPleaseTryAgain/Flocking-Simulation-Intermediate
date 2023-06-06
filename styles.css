@@ -1,0 +1,109 @@
+/* SLIDER */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    border-radius: 15px;
+    background-color: black;
+}
+
+input[type="range"]:hover {
+    background: #171717;
+}
+
+input[type="range"]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #171717;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: inset 0px 0px 2px rgb(255, 255, 255);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    margin-top: -7px;
+    margin-bottom: -7px;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    box-shadow: inset 0px 0px 2px black;
+    background: hsl(0, 0%, 100%);
+}
+
+
+/* COLOR */
+input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    cursor: pointer;
+
+    width: 50px;
+    height: 50px;
+    box-shadow: inset 8px 8px 0px black,
+        inset -8px -8px 0px black;
+    border-radius: 5px;
+}
+
+/* CHECKBOX */
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+
+    background-color: white;
+    width: 15px;
+    height: 15px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition-duration: 0.25s;
+}
+
+input[type="checkbox"]:hover {
+    background-color: #a1a1a1;
+}
+
+input[type="checkbox"]:focus {
+    background-color: #a1a1a1;
+}
+
+input[type="checkbox"]:checked {
+    content: "";
+
+    transition: 250ms transform ease-in-out;
+
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+/* BUTTON */
+button {
+    width: 40%;
+    height: 40px;
+
+    border-radius: 25px;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition: 0.25s background-color ease-in-out,
+        0.025s transform ease-out;
+}
+
+button:hover {
+    background-color: #a1a1a1;
+}
+
+button:active {
+    transform: scale(0.95);
+}
